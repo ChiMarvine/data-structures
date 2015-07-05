@@ -27,7 +27,6 @@ treeMethods.contains = function(target){
 	// 	return false
 	// }
 	var counter = 0
-	console.log(this);
 	var recursiveChildChecker = function(node) {
 		for(var i = 0; i < node.length; i++){
 			if (node[i].value === target){

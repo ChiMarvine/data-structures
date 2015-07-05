@@ -1,20 +1,20 @@
 var BinarySearchTree = function(value){
 	var node = {};
 	node.value = value;
-	node.left = undefined;
-	node.right = undefined;
+	node.left = null;
+	node.right = null;
 
 
 
 	node.insert = function(value){
 		if(value > node.value) {
-			if(node.right === undefined) {
+			if(node.right === null) {
 				node.right = BinarySearchTree(value);
 			} else {
 				node.right.insert(value);
 			}
 		} else {
-			if(node.left === undefined) {
+			if(node.left === null) {
 				node.left = BinarySearchTree(value);
 			} else {
 				node.left.insert(value);
@@ -23,11 +23,32 @@ var BinarySearchTree = function(value){
 	}
 
 	node.contains = function(value){
-
+		if(value === node.value){
+			return true;
+		}
+		if(value > node.value){
+			if(node.right === null) {
+				return false;
+			}
+			return node.right.contains(value)
+		}
+		if(value < node.value){
+			if(node.left === null) {
+				return false;
+			}
+			return node.left.contains(value)
+		}
 	}
+	
 
 	node.depthFirstLog = function(callback){
-
+		callback(node.value);
+		if(node.right !== null){
+			node.right.depthFirstLog(callback)
+		}
+		if(node.left !== null){
+			node.left.depthFirstLog(callback)
+		}
 	}
 
 	return node;
